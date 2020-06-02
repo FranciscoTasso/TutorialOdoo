@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from datetime import timedelta
 
-from odoo import models, fields, api, exceptions
+from odoo import models, fields, api, exceptions, _
 
 
 # class openacademy(models.Model):
@@ -33,11 +33,11 @@ class Course(models.Model):
         default = dict(default or {})
 
         copied_count = self.search_count(
-            [('name', '=like', u"Copy of {}%".format(self.name))])
+            [('name', '=like', _(u"Copy of {}%").format(self.name))])
         if not copied_count:
-            new_name = u"Copy of {}".format(self.name)
+            new_name = _(u"Copy of {}").format(self.name)
         else:
-            new_name = u"Copy of {} ({})".format(self.name, copied_count)
+            new_name = _(u"Copy of {} ({})").format(self.name, copied_count)
 
         default['name'] = new_name
         return super(Course, self).copy(default)
@@ -121,16 +121,16 @@ class Sessions(models.Model):
             return {
                 'warning':
                 {
-                'title': "Numero incorrecto de asientos",
-                'message':"El numero de asientos no puede ser negativo"
+                'title': _("Numero incorrecto de asientos"),
+                'message':_("El numero de asientos no puede ser negativo")
                 },
             }
         if self.seats < len(self.attendee_ids):
             return {
                 'warning':
                 {
-                'title': "Muchos atendedores",
-                'message': "El numero de asientos no cubre con la cantidad de asistentes"
+                'title': _("Muchos atendedores"),
+                'message': _("El numero de asientos no cubre con la cantidad de asistentes")
                 },
             }
 
@@ -138,4 +138,4 @@ class Sessions(models.Model):
     def _check_ifinstructor(self):
         for r in self:
             if r.instructor_id in r.attendee_ids:
-                raise exceptions.ValidationError("El instructor se encuentra entre los asistentes")
+                raise exceptions.ValidationError(_("El instructor se encuentra entre los asistentes"))
