@@ -141,7 +141,7 @@
         </field>
     </record>
 
-    <record model="ir.iu.view" id="session_graph_view">
+    <record model="ir.ui.view" id="session_graph_view">
         <field name="name">session.graph</field>
         <field name="model">openacademy.session</field>
         <field name="arch" type="xml">
@@ -152,7 +152,7 @@
         </field>
     </record>
 
-    <record model="ir.iu.view" id="session_kanbal_view">
+    <record model="ir.ui.view" id="session_kanbal_view">
         <field name="name">session.kanbal</field>
         <field name="model">openacademy.session</field>
         <field name="arch" type="xml">
@@ -165,7 +165,7 @@
                                                   oe_kanban_global_click_edit oe_semantic_html_override
                                                   oe_kanban_card {{record.group_fancy==1 ? 'oe_kanban_card_fancy' : ''}}">
                                 <div class="oe_dropdown_kanban">
-                                    <!-- dropdown menu -->
+
                                     <div class="oe_dropdown_toggle">
                                         <i class="fa fa-bars fa-lg" title="Manage" aria-label="Manage"/>
                                         <ul class="oe_dropdown_menu">
@@ -181,7 +181,7 @@
                                     <div class="oe_clear"></div>
                                 </div>
                                 <div t-attf-class="oe_kanban_content">
-                                    <!-- title -->
+
                                     Session name:
                                     <field name="name"/>
                                     <br/>
@@ -197,7 +197,6 @@
             </kanban>
         </field>
     </record>
-
 
     <record model="ir.actions.act_window" id="session_list_action">
         <field name="name">Sessions</field>

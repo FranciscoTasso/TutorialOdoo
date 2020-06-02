@@ -81,8 +81,8 @@ class Sessions(models.Model):
 
     @api.depends('attendee_ids')
     def _attendees_count(self):
-        for r in self
-        r.attendees_count=len(r.attendee_ids)
+        for r in self:
+            r.attendees_count=len(r.attendee_ids)
 
 
 
@@ -117,7 +117,7 @@ class Sessions(models.Model):
 
     @api.onchange('seats','taken_seats')
     def _verify_valid_seats(self):
-        if r.seats < 0.0:
+        if self.seats < 0.0:
             return {
                 'warning':
                 {
@@ -125,7 +125,7 @@ class Sessions(models.Model):
                 'message':"El numero de asientos no puede ser negativo"
                 },
             }
-        if r.seats < len(r.attendee_ids):
+        if self.seats < len(self.attendee_ids):
             return {
                 'warning':
                 {
