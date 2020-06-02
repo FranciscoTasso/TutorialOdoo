@@ -61,6 +61,10 @@ class Sessions(models.Model):
     duration=fields.Float(digits=(6, 2), help="Duracion en dias de la sesion")
     seats=fields.Integer(string="Numero de asientos")
     active = fields.Boolean(default=True)
+    color=fields.Integer()
+
+
+
 
     instructor_id = fields.Many2one('res.partner', string="Instructor",
                                     domain=['|', ('instructor', '=', True),
@@ -72,6 +76,14 @@ class Sessions(models.Model):
     taken_seats=fields.Integer(string="Asientos ocupados", compute='_taken_seats')
 
     end_date=fields.Date(string="Fecha de fin de la sesion",compute='_end_date',inverse='set_end_date')
+
+    attendees_count=fields.Integer(string="Numero de asistentes", compute='_attendees_count', store=True)
+
+    @api.depends('attendee_ids')
+    def _attendees_count(self):
+        for r in self
+        r.attendees_count=len(r.attendee_ids)
+
 
 
     @api.depends('seats','taken_seats')
