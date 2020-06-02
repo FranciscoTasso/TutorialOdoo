@@ -4,7 +4,7 @@
         id="report_session"
         model="openacademy.session"
         string="Session Report"
-        name="openacademy.report_session_view"
+        name="openacademy_repo.report_session_view"
         file="openacademy.report_session"
         report_type="qweb-pdf" />
 
