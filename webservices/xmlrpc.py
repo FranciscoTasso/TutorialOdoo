@@ -1,5 +1,5 @@
 import functools
-import xmlrpc.client
+
 HOST = 'localhost'
 PORT = 8069
 DB = 'openacademy'
@@ -8,7 +8,7 @@ PASS = 'admin'
 ROOT = 'http://%s:%d/xmlrpc/' % (HOST,PORT)
 
 # 1. Login
-uid = xmlrpc.client.ServerProxy(ROOT + 'common').login(DB,USER,PASS)
+uid = xmlrpc.client.ServerProxy(ROOT + 'common').login(DB, USER, PASS)
 print("Logged in as %s (uid:%d)" % (USER,uid))
 
 call = functools.partial(
