@@ -28,7 +28,7 @@
         # 'security/ir.model.access.csv',
         #'views/templates.xml',
         'views/openacademy.xml',
-        'reports.xml',
+        'reports/reports.xml',
         'views/session_board.xml',
         #'views/partner.xml'
     ],
